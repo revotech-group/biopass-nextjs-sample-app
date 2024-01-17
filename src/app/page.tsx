@@ -12,7 +12,7 @@ export default function Home() {
       setShowSnowfall(true);
       setTimeout(() => {
         setShowSnowfall(false);
-      }, 5000);
+      }, 15 * 1000);
     }
   }, [data]);
 

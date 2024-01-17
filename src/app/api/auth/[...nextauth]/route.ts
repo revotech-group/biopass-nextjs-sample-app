@@ -11,9 +11,8 @@ const handler = NextAuth({
       idToken: true,
       checks: ["pkce", "state"],
       clientId: process.env.NEXT_PUBLIC_OIDC_CLIENT_ID,
-      client: {
-        token_endpoint_auth_method: "none",
-      },
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+
       profile(profile) {
         return {
           id: profile.sub,

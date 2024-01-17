@@ -22,9 +22,9 @@ and in the file **route.ts** we have the basic setup.
 You can change the environment variables in order to make this configuration work for your own client and tenant.
 Keep in mind that these variables are only used for server side, so they don't need the `NEXT_PUBLIC_` prefix.
 
-    CLIENT_ID="your client's id"
-    ISSUER="your client's issuer"
-    SCOPES="your client's scopes"  #for example: openid email profile
+    BIOPASS_CLIENT_ID="your client's id"
+    BIOPASS_ISSUER="your client's issuer"
+    BIOPASS_SCOPES="your client's scopes"  #for example: openid email profile
     NEXTAUTH_URL="The url your app is hosted on"  #if you are running in dev environment it should be http://localhost:3000
     NEXTAUTH_SECRET="your-random-string"
 

@@ -23,7 +23,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold my-6 text-center">
             Welcome back{" "}
             <span className="text-secondary">
-              "{data.profile.preferred_username}"
+              &ldquo;{data.profile.preferred_username}&rdquo;
             </span>
             !
           </h1>

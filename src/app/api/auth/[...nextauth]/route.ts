@@ -6,13 +6,14 @@ const handler = NextAuth({
       id: "biopass",
       name: "Biopass",
       type: "oauth",
-      wellKnown: `${process.env.NEXT_PUBLIC_OIDC_ISSUER}.well-known/openid-configuration`,
-      authorization: { params: { scope: process.env.NEXT_PUBLIC_OIDC_SCOPES } },
+      wellKnown: `${process.env.NEXT_PUBLIC_ISSUER}.well-known/openid-configuration`,
+      authorization: { params: { scope: process.env.NEXT_PUBLIC_SCOPES } },
       idToken: true,
       checks: ["pkce", "state"],
-      clientId: process.env.NEXT_PUBLIC_OIDC_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      client: {
+        token_endpoint_auth_method: "none",
+      },
       profile(profile) {
         return {
           id: profile.sub,

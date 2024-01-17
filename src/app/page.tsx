@@ -12,7 +12,7 @@ export default function Home() {
       setShowSnowfall(true);
       setTimeout(() => {
         setShowSnowfall(false);
-      }, 15 * 1000);
+      }, 10 * 1000);
     }
   }, [data]);
 
@@ -21,7 +21,11 @@ export default function Home() {
       return (
         <>
           <h1 className="text-4xl font-bold my-6 text-center">
-            Welcome back <span>{data.profile.preferred_username}</span>
+            Welcome back{" "}
+            <span className="text-secondary">
+              "{data.profile.preferred_username}"
+            </span>
+            !
           </h1>
           <p className="text-center">
             You have been successfully authenticated.
@@ -32,7 +36,7 @@ export default function Home() {
       return (
         <>
           <h1 className="text-4xl font-bold my-6 text-center">
-            Welcome to Biopass
+            Biopass NextJS sample
           </h1>
           <p className="text-center">
             Try clicking the Login button in the navbar.
@@ -43,7 +47,13 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 mt-24">
-      {showSnowfall && <Snowfall />}
+      {showSnowfall && (
+        <>
+          <Snowfall speed={[8, 12]} color="red" />
+          <Snowfall speed={[8, 12]} color="blue" />
+          <Snowfall speed={[8, 12]} color="green" />
+        </>
+      )}
       {BodyTexts()}
     </div>
   );

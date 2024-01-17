@@ -6,11 +6,12 @@ The goal of this project is to give you an example of how to use Biopass as an A
 ## Scripts
 
 After cloning the project and running npm i, you can use these scripts to run your application or a create a production build.
+Keep in mind in order to run the project in dev environment you have to create a .env file in the root of your project as discussed in the next section.
 
     "scripts":  {
         "dev":  "env-cmd -f .env next dev",
-        "build":  "env-cmd -f .env next build",
-        "start":  "env-cmd -f .env next start"
+        "build":  "next build",
+        "start":  "next start"
     },
 
 ## Next-Auth implementation
@@ -19,13 +20,20 @@ Firstly we need to create a config for next-auth that uses Biopass as an authent
 and in the file **route.ts** we have the basic setup.
 
 You can change the environment variables in order to make this configuration work for your own client and tenant.
+Keep in mind that these variables are only used for server side, so they don't need the `NEXT_PUBLIC_` prefix.
 
-    NEXT_PUBLIC_OIDC_CLIENT_ID="OOO2AOdZMX2tLdCuvD99"  #change this to your own clientId
-    NEXT_PUBLIC_OIDC_ISSUER="https://acme.au.test.tribify.io/"  #change this to your client's issuer
-    NEXT_PUBLIC_OIDC_SCOPES="openid email profile"  #change this to you client's scopes
-    NEXTAUTH_URL="http://localhost:3000"  #if you are deploying this, change this to your domain name
+    CLIENT_ID="your client's id"
+    ISSUER="your client's issuer"
+    SCOPES="your client's scopes"  #for example: openid email profile
+    NEXTAUTH_URL="The url your app is hosted on"  #if you are running in dev environment it should be http://localhost:3000
+    NEXTAUTH_SECRET="your-random-string"
 
-The environment variables above, are used in next-auth configuration, which adds biopass as a custom provider for your application
+The environment variables above, are used in next-auth configuration, which adds biopass as a custom provider for your application.
+
+Keep in mind, in order to deploy your project you need to have environment variable `NEXTAUTH_SECRET` set to a random string, you can generate it with a tool like: https://generate-secret.vercel.app/32
+This environment variable is used by NextAuth.js to encrypt the JSON Web Tokens (JWTs) and hash email verification tokens. It's also used to sign and encrypt session cookies, and generate public/private keys.
+The `NEXTAUTH_SECRET` is essential for securely handling user sessions and sensitive information in a Next.js application using NextAuth.js. Without it, you'll encounter errors during the production phase.
+
 You can manipulate or add to the setup based on your needs. in callbacks property we have the following:
 
     callbacks:  {
